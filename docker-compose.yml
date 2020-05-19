@@ -1,0 +1,103 @@
+version: "3.3"
+
+services:
+  mongo:
+    container_name: mongo
+    hostname: mongo
+    image: mongo:latest
+    networks:
+      - mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+        - './configs/mongod.conf:/etc/mongod.conf'
+        - './logs/mongo:/var/log/mongodb'
+        - './configs/mongo.sh:/etc/mongo.sh'
+    entrypoint: ["/bin/sh","-c","/etc/mongo.sh"]
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    depends_on:
+      - mongo
+    networks:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    hostname: redis
+    ports:
+      - 6379:6379
+    volumes:
+       - './configs/redis.conf:/usr/local/etc/redis/redis.conf'
+       - type: bind
+         source: ./logs/redis
+         target: /data
+       - type: bind
+         source: ./logs/redis
+         target: /var/log/redis
+    entrypoint: ["redis-server", "--include /usr/local/etc/redis/redis.conf"]
+    networks:
+      - redis
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - 8082:8081
+    networks:
+      - redis
+
+  influxdb:
+    container_name: influxdb
+    hostname: influxdb
+    image: influxdb:alpine
+    ports:
+      - 8086:8086
+    volumes:
+       - './configs/influxdb.conf:/etc/influxdb/influxdb.conf'
+    networks:
+      - influxdb
+
+  chronograf:
+    image: chronograf:alpine
+    environment:
+      - influxdb-url=http://influxdb:8086
+    ports:
+      - 8083:8888
+    networks:
+      - influxdb
+
+  neo4j:
+    container_name: neo4j
+    image: neo4j
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+       - './configs/neo4j.conf:/conf/neo4j.conf'
+       - type: bind
+         source: './logs/neo4j'
+         target: /logs
+    environment:
+      - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
+    networks:
+      - neo4j
+
+networks:
+  mongo:
+  redis:
+  influxdb:
+  neo4j:
+  node:

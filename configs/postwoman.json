@@ -1,0 +1,138 @@
+[
+  {
+    "name": "Demo",
+    "folders": [],
+    "requests": [
+      {
+        "url": "http://localhost:4000",
+        "path": "/register/",
+        "method": "POST",
+        "auth": "None",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "rawParams": "{\n  \"name\": \"Modi34\",\n  \"email\": \"modi34@yandex.ru\",\n  \"password\": \"Modi34\"\n}",
+        "rawInput": true,
+        "contentType": "application/json",
+        "requestType": "",
+        "preRequestScript": null,
+        "testScript": null,
+        "name": "Register user",
+        "collection": 0
+      },
+      {
+        "url": "http://localhost:4000",
+        "path": "/login/",
+        "method": "POST",
+        "auth": "None",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "rawParams": "{\n  \"email\": \"modi34@yandex.ru\",\n  \"password\": \"Modi34\"\n}",
+        "rawInput": true,
+        "contentType": "application/json",
+        "requestType": "",
+        "preRequestScript": null,
+        "testScript": null,
+        "name": "Login user",
+        "collection": 0
+      },
+      {
+        "url": "http://localhost:4000",
+        "path": "/logout",
+        "method": "GET",
+        "auth": "None",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "rawParams": "{\n  \"email\": \"modi34@yandex.ru\",\n  \"password\": \"Modi34\"\n}",
+        "rawInput": true,
+        "contentType": "",
+        "requestType": "",
+        "preRequestScript": null,
+        "testScript": null,
+        "name": "Logout user",
+        "collection": 0
+      },
+      {
+        "url": "http://localhost:4000",
+        "path": "/vote",
+        "method": "POST",
+        "auth": "None",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "rawParams": "{\n  \"poll\": \"Are you agree?\",\n  \"option\": \"no\"\n}",
+        "rawInput": true,
+        "contentType": "application/json",
+        "requestType": "",
+        "preRequestScript": null,
+        "testScript": null,
+        "name": "Vote",
+        "collection": 0
+      },
+      {
+        "url": "http://localhost:4000",
+        "path": "/newPoll",
+        "method": "POST",
+        "auth": "None",
+        "httpUser": "",
+        "httpPassword": "",
+        "passwordFieldType": "password",
+        "bearerToken": "",
+        "headers": [],
+        "params": [],
+        "bodyParams": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "rawParams": "{\n  \"text\": \"Are you sure?\",\n  \"options\": [\n    {\n      \"text\": \"yes\"\n    },\n    {\n      \"text\": \"no\"\n    }\n  ]\n}",
+        "rawInput": true,
+        "contentType": "application/json",
+        "requestType": "",
+        "preRequestScript": null,
+        "testScript": null,
+        "name": "Create Poll",
+        "collection": 0
+      }
+    ]
+  }
+]
